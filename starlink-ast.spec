@@ -5,7 +5,8 @@ Version:	2.0_9.218
 Release:	1
 License:	LGPL (wcslib), non-commercial use and distribution (see AST_CONDITIONS)
 Group:		Libraries
-Source0:	ftp://ftp.starlink.rl.ac.uk/pub/ussc/store/ast/ast.tar.Z
+#Source0:	ftp://ftp.starlink.rl.ac.uk/pub/ussc/store/ast/ast.tar.Z
+Source0:	ast.tar.Z
 # Source0-md5:	71dec6919d6dd2bf5656415d2f1fb49c
 Patch0:		%{name}-make.patch
 URL:		http://www.starlink.rl.ac.uk/static_www/soft_further_AST.html
