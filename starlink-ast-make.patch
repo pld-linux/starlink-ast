@@ -1,0 +1,79 @@
+--- starlink-ast-2.0_9.218/mk.orig	2003-05-08 17:19:01.000000000 +0200
++++ starlink-ast-2.0_9.218/mk	2003-11-02 12:22:32.499775512 +0100
+@@ -295,11 +295,11 @@
+ #  ----------------------
+             ix86_Linux)
+                AR_IN='ar r'
+-               BLD_SHR='f() { ld -shared -soname $$1 -o $$1 $$2;}; f'
++               BLD_SHR='f() { $(CC) -shared $$3 -Wl,-soname=$$1 -o $$1 $$2;}; f'
+ 	       CC='gcc'
+-               CFLAGS='-ansi -O2 -fPIC'
++               CFLAGS='-ansi $(OPT) -fPIC'
+                FC='g77'
+-	       FFLAGS='-fno-second-underscore -O2 -fPIC'
++	       FFLAGS='-fno-second-underscore $(OPT) -fPIC'
+                FLIBS='-lg2c'
+                LINK='ln -s'
+                RANLIB='ranlib'
+--- starlink-ast-2.0_9.218/makefile.orig	2003-05-08 17:19:01.000000000 +0200
++++ starlink-ast-2.0_9.218/makefile	2003-11-02 12:30:58.289883728 +0100
+@@ -236,6 +236,7 @@
+ STAR_HELP = $(STARLINK)/help
+ STAR_INC = $(STARLINK)/include
+ STAR_LIB = $(STARLINK)/lib
++STAR_SHARE = $(STARLINK)/share
+ 
+ #  Pathname of the root directory beneath which the built files for
+ #  this package should be installed for use.  This defaults to the
+@@ -609,7 +610,39 @@
+ #  them. The third argument to $(BLD_SHR) should provide the information
+ #  necessary to link any libraries called by this package.
+ 
+-SHAREABLE_LIBRARIES =
++SHAREABLE_LIBRARIES = lib$(PKG_NAME)_wcslib$(SHARE) lib$(PKG_NAME)_ems$(SHARE) \
++	lib$(PKG_NAME)_err$(SHARE) lib$(PKG_NAME)_grf$(SHARE) \
++	lib$(PKG_NAME)_pgplot$(SHARE) lib$(PKG_NAME)_slalib$(SHARE) \
++	lib$(PKG_NAME)$(SHARE)
++
++#  This library contains the main modules for the package.
++lib$(PKG_NAME)$(SHARE): $(MAIN_OBJECT_FILES)
++	$(BLD_SHR) $@ '$(MAIN_OBJECT_FILES)' '-lm -L. -last_slalib -last_wcslib -last_err'
++
++#  This contains the default error reporting system.
++lib$(PKG_NAME)_err$(SHARE): $(ERR_OBJECT_FILES)
++	$(BLD_SHR) $@ '$(ERR_OBJECT_FILES)'
++
++#  This contains the EMS-based error reporting system.
++lib$(PKG_NAME)_ems$(SHARE): $(EMS_OBJECT_FILES)
++	$(BLD_SHR) $@ '$(EMS_OBJECT_FILES)' '-L$(STAR_SHARE) -lems'
++
++#  This contains the default (null) graphics system.
++lib$(PKG_NAME)_grf$(SHARE): $(GRF_OBJECT_FILES)
++	$(BLD_SHR) $@ '$(GRF_OBJECT_FILES)'
++
++#  This contains the PGPLOT-based graphics system.
++lib$(PKG_NAME)_pgplot$(SHARE): $(PGPLOT_OBJECT_FILES)
++	$(BLD_SHR) $@ '$(PGPLOT_OBJECT_FILES)' '-lpgplot -lm'
++
++#  This contains the interface between C code and the FORTRAN version of
++#  SLALIB.
++lib$(PKG_NAME)_slalib$(SHARE): $(SLALIB_OBJECT_FILES)
++	$(BLD_SHR) $@ '$(SLALIB_OBJECT_FILES)' '-L$(STAR_SHARE) -lsla'
++
++#  This contains the code adapted from the wcslib library.
++lib$(PKG_NAME)_wcslib$(SHARE): $(WCSLIB_OBJECT_FILES)
++	$(BLD_SHR) $@ '$(WCSLIB_OBJECT_FILES)' '-lm'
+ 
+ #  Name of the date stamp file.  This is used to record the time of the
+ #  most recent build for use in subsequent operations that require it.
+@@ -888,8 +888,9 @@
+ #
+ #  Form a second link to the main object library. This is used when a second
+ #  pass through the library is needed during linking.
+-	- rm -f $(INSTALL_LIB)/lib$(PKG_NAME)_pass2.a
++	- rm -f $(INSTALL_LIB)/lib$(PKG_NAME)_pass2.a $(INSTALL_SHARE)/lib$(PKG_NAME)_pass2$(SHARE)
+ 	cd $(INSTALL_LIB); $(LINK) lib$(PKG_NAME).a lib$(PKG_NAME)_pass2.a
++	cd $(INSTALL_SHARE); $(LINK) lib$(PKG_NAME)$(SHARE) lib$(PKG_NAME)_pass2$(SHARE)
+ #
+ #  Install shareable libraries, giving them read permission (unless
+ #  they are dummy, zero size, files in which case they are left in
