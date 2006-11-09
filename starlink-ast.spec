@@ -35,7 +35,7 @@ do generowania w oparciu o nie grafiki.
 Summary:	Header files for AST library
 Summary(pl):	Pliki nag³ówkowe biblioteki AST
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	starlink-ems-devel
 Requires:	starlink-sla-devel
 
@@ -49,7 +49,7 @@ Pliki nag³ówkowe biblioteki AST.
 Summary:	Static Starlink AST library
 Summary(pl):	Statyczna biblioteka Starlink AST
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static Starlink AST library.
