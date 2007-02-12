@@ -1,5 +1,5 @@
 Summary:	AST - Astrometry and World Coordinate System library
-Summary(pl):	AST - biblioteka do astronometrii i systemu wsp蟪rz阣nych ziemskich
+Summary(pl.UTF-8):   AST - biblioteka do astronometrii i systemu wsp贸艂rz臋dnych ziemskich
 Name:		starlink-ast
 Version:	2.0_9.218
 Release:	1
@@ -25,15 +25,15 @@ attaching world coordinate systems to astronomical data, for
 retrieving and interpreting that information and for generating
 graphical output based on it.
 
-%description -l pl
-Biblioteka AST dostarcza wyczerpuj眂y zakres mo縧iwo禼i do
-przywi眤ywania system體 wsp蟪rz阣nych ziemskich do danych
+%description -l pl.UTF-8
+Biblioteka AST dostarcza wyczerpuj膮cy zakres mo偶liwo艣ci do
+przywi膮zywania system贸w wsp贸艂rz臋dnych ziemskich do danych
 astronomicznych, uzyskiwania i interpretowania takich informacji oraz
 do generowania w oparciu o nie grafiki.
 
 %package devel
 Summary:	Header files for AST library
-Summary(pl):	Pliki nag丑wkowe biblioteki AST
+Summary(pl.UTF-8):   Pliki nag艂贸wkowe biblioteki AST
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	starlink-ems-devel
@@ -42,19 +42,19 @@ Requires:	starlink-sla-devel
 %description devel
 Header files for AST library.
 
-%description devel -l pl
-Pliki nag丑wkowe biblioteki AST.
+%description devel -l pl.UTF-8
+Pliki nag艂贸wkowe biblioteki AST.
 
 %package static
 Summary:	Static Starlink AST library
-Summary(pl):	Statyczna biblioteka Starlink AST
+Summary(pl.UTF-8):   Statyczna biblioteka Starlink AST
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static Starlink AST library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka Starlink AST.
 
 %prep
