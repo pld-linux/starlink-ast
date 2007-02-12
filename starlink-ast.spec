@@ -1,5 +1,5 @@
 Summary:	AST - Astrometry and World Coordinate System library
-Summary(pl.UTF-8):   AST - biblioteka do astronometrii i systemu współrzędnych ziemskich
+Summary(pl.UTF-8):	AST - biblioteka do astronometrii i systemu współrzędnych ziemskich
 Name:		starlink-ast
 Version:	2.0_9.218
 Release:	1
@@ -33,7 +33,7 @@ do generowania w oparciu o nie grafiki.
 
 %package devel
 Summary:	Header files for AST library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki AST
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki AST
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	starlink-ems-devel
@@ -47,7 +47,7 @@ Pliki nagłówkowe biblioteki AST.
 
 %package static
 Summary:	Static Starlink AST library
-Summary(pl.UTF-8):   Statyczna biblioteka Starlink AST
+Summary(pl.UTF-8):	Statyczna biblioteka Starlink AST
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
