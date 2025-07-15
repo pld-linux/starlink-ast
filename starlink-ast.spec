@@ -59,7 +59,7 @@ Statyczna biblioteka Starlink AST.
 
 %prep
 %setup -q -c
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 OPT="%{rpmcflags}" \
